@@ -1,5 +1,5 @@
 # Simple Rigging Automation Pt. 1
-# Creates Necessary groups for starting the rigging process 
+# Creates necessary groups for starting the rigging process 
 # Colin Cheng
 #
 # Input: Prefix name 
