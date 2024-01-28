@@ -1,0 +1,4 @@
+# Making a window that saves time creating custom controls for your rig 
+
+import maya.cmds as cmds 
+
