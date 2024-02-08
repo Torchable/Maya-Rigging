@@ -1,21 +1,28 @@
+# Colin Cheng 
+# 
+# 
 # Making a window that saves time creating custom controls for your rig 
 
 import maya.cmds as cmds
 
 
-#makes a new window for controls 
-    
+#Creates Circle Control 
+def CreateCircle():
+    cmds.circle()
+    cmds.group()
+
+#makes a new window for controls  
 def main():
-        
+    if cmds.window('Custom Control Window', exists=True):
+        cmds.deleteUI('Custom Control Window')   
     window = cmds.window( title="Custom Control Window", iconName='CC Window', widthHeight=(200, 500) )
+    cmds.showWindow( window )
+    
     cmds.columnLayout( adjustableColumn=True )
-    CircleControl = cmds.button( label='Create Circle Control',recomputeSize = True)
+    CircleControl = cmds.button( label='Create Circle Control', command= 'CreateCube()')
     CubeControl = cmds.button( label='Create Cube Control')
     GearControl = cmds.button( label='Create Gear Control')
-    OffsetGroup = cmds.switchTable('Create Offset Group')
     cmds.button( label='Close', command=('cmds.deleteUI(\"' + window + '\", window=True)') )
     cmds.setParent( '..' )
-    cmds.showWindow( window )
         
 main()
-
