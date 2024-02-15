@@ -1,1 +1,1 @@
-I post scripts that I've made for Autodesk Maya here! 
+I post scripts that I've made in Python for Autodesk Maya here! 
