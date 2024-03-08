@@ -8,7 +8,7 @@ import maya.cmds as cmds
 
 #Creates Circle Control 
 def CreateCircle():
-    cmds.circle()
+    cmds.circle(nr=(0, 1, 0)
     cmds.group()
 
 #makes a new window for controls  
