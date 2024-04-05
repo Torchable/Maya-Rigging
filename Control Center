@@ -11,18 +11,27 @@ def CreateCircle():
     cmds.circle(nr=(0, 1, 0))
     cmds.group()
 
-#makes a new window for controls  
-def main():
-    if cmds.window('Custom Control Window', exists=True):
-        cmds.deleteUI('Custom Control Window')   
-    window = cmds.window( title="Custom Control Window", iconName='CC Window', widthHeight=(200, 500) )
-    cmds.showWindow( window )
+#W.I.P, Im trying to get nurbsCube to work better
+def CreateCube():
+    cmds.polyCube()
+
     
+#makes a new window for controls  
+def window():
+    #Deletes old window
+    mywindow = 'Custom Control Window'
+    if cmds.window(mywindow, exists=True):
+        cmds.deleteUI(mywindow, window = True)  
+
+    #Creates window
+    mywindow = cmds.window(mywindow, iconName='CC Window', widthHeight=(400, 500) )
+    cmds.showWindow(mywindow)
+
     cmds.columnLayout( adjustableColumn=True )
     CircleControl = cmds.button( label='Create Circle Control', command= 'CreateCircle()')
-    CubeControl = cmds.button( label='Create Cube Control')
+    CubeControl = cmds.button( label='Create Cube Control', command = 'CreateCube()')
     GearControl = cmds.button( label='Create Gear Control')
-    cmds.button( label='Close', command=('cmds.deleteUI(\"' + window + '\", window=True)') )
+    Close = cmds.button( label='Close', command=('cmds.deleteUI(\"' + 'mywindow' + '\", window=True)') )
     cmds.setParent( '..' )
         
-main()
+window()
