@@ -19,7 +19,7 @@ def main():
     cmds.showWindow( window )
     
     cmds.columnLayout( adjustableColumn=True )
-    CircleControl = cmds.button( label='Create Circle Control', command= 'CreateCube()')
+    CircleControl = cmds.button( label='Create Circle Control', command= 'CreateCircle()')
     CubeControl = cmds.button( label='Create Cube Control')
     GearControl = cmds.button( label='Create Gear Control')
     cmds.button( label='Close', command=('cmds.deleteUI(\"' + window + '\", window=True)') )
