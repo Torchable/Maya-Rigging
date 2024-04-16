@@ -15,6 +15,14 @@ def CreateCircle():
 def CreateCube():
     cmds.polyCube()
 
+#Creates joints by input #
+def CreateJoints():
+    jseq = int(input())
+    jnum = 0
+    for i in range(jseq):
+        cmds.joint(p= (jnum, 0, 0))
+        jnum = jnum + 1
+        
     
 #makes a new window for controls  
 def window():
@@ -31,7 +39,8 @@ def window():
     CircleControl = cmds.button( label='Create Circle Control', command= 'CreateCircle()')
     CubeControl = cmds.button( label='Create Cube Control', command = 'CreateCube()')
     GearControl = cmds.button( label='Create Gear Control')
-    Close = cmds.button( label='Close', command=('cmds.deleteUI(\"' + 'mywindow' + '\", window=True)') )
+    JointCreate = cmds.button( label='Create Joint Sequence', command = 'CreateJoints()')
+    Close = cmds.button( label='Close', command=('cmds.deleteUI(\"' + 'CC Window' + '\", window=True)') )
     cmds.setParent( '..' )
         
 window()
