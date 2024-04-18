@@ -3,6 +3,7 @@
 # Using mayas internal clock, im going to make a real time clock in the viewport. Idk what this would ever be used for, but I'll make it anyway.
 
 import maya.cmds as cmds
-
-cmds.group(n= 'clock_GRP')
+minhand = cmds.Cube 
+hourhand = cmds.Cube 
+cmds.group(minhand, hourhandn= 'clock_GRP')
 
