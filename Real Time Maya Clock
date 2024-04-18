@@ -5,5 +5,5 @@
 import maya.cmds as cmds
 minhand = cmds.Cube 
 hourhand = cmds.Cube 
-cmds.group(minhand, hourhandn= 'clock_GRP')
+cmds.group(minhand, hourhand, n= 'clock_GRP')
 
