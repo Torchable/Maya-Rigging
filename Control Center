@@ -4,16 +4,23 @@
 # Making a window that saves time creating custom controls for your rig 
 
 import maya.cmds as cmds
-
-
+import maya.mel as mm
+       
 #Creates Circle Control 
-def CreateCircle():
+def CreateCircle(CreateOffset):
     cmds.circle(nr=(0, 1, 0))
     cmds.group()
+        
 
-#W.I.P, Im trying to get nurbsCube to work better
+#Creates Cube Control
 def CreateCube():
-    cmds.polyCube()
+    mm.eval('curve -d 1 -p 0.5 0.5 -0.5 -p 0.5 0.5 0.5 -p -0.5 0.5 0.5 -p -0.5 0.5 -0.5 -p 0.5 0.5 -0.5 -p 0.5 -0.5 -0.5 -p -0.5 -0.5 -0.5 -p -0.5 0.5 -0.5 -p -0.5 0.5 0.5 -p -0.5 -0.5 0.5 -p -0.5 -0.5 -0.5 -p 0.5 -0.5 -0.5 -p 0.5 -0.5 0.5 -p -0.5 -0.5 0.5 -p -0.5 0.5 0.5 -p 0.5 0.5 0.5 -p 0.5 -0.5 0.5 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 ;')
+    cmds.group()
+
+#Creates Gear Control
+def CreateGear():
+    mm.eval('curve -d 1 -p -0.22961 0 0.92388 -p -0.206649 0 1.02388 -p -0.114805 0 1.12388 -p 0.114805 0 1.12388 -p 0.206649 0 1.02388 -p 0.22961 0 0.92388 -p 0.490923 0 0.81564 -p 0.577869 0 0.870115 -p 0.713523 0 0.875882 -p 0.875882 0 0.713523 -p 0.870115 0 0.577869 -p 0.81564 0 0.490923 -p 0.92388 0 0.22961 -p 1.02388 0 0.206649 -p 1.12388 0 0.114805 -p 1.12388 0 -0.114805 -p 1.02388 0 -0.206649 -p 0.92388 0 -0.22961 -p 0.81564 0 -0.490923 -p 0.870115 0 -0.577869 -p 0.875882 0 -0.713523 -p 0.713523 0 -0.875882 -p 0.577869 0 -0.870115 -p 0.490923 0 -0.81564 -p 0.22961 0 -0.92388 -p 0.206649 0 -1.02388 -p 0.114805 0 -1.123879 -p -0.114805 0 -1.123879 -p -0.206649 0 -1.023879 -p -0.22961 0 -0.923879 -p -0.490923 0 -0.81564 -p -0.577869 0 -0.870115 -p -0.713524 0 -0.875882 -p -0.875882 0 -0.713523 -p -0.870115 0 -0.577869 -p -0.81564 0 -0.490923 -p -0.92388 0 -0.22961 -p -1.02388 0 -0.206649 -p -1.123879 0 -0.114805 -p -1.123879 0 0.114805 -p -1.023879 0 0.206649 -p -0.923879 0 0.22961 -p -0.81564 0 0.490923 -p -0.870115 0 0.57787 -p -0.875882 0 0.713524 -p -0.713523 0 0.875883 -p -0.577869 0 0.870115 -p -0.490923 0 0.81564 -p -0.22961 0 0.92388 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 -k 17 -k 18 -k 19 -k 20 -k 21 -k 22 -k 23 -k 24 -k 25 -k 26 -k 27 -k 28 -k 29 -k 30 -k 31 -k 32 -k 33 -k 34 -k 35 -k 36 -k 37 -k 38 -k 39 -k 40 -k 41 -k 42 -k 43 -k 44 -k 45 -k 46 -k 47 -k 48 ;')
+    cmds.group()
 
 #Creates joints by input #
 def CreateJoints():
@@ -38,8 +45,10 @@ def window():
     cmds.columnLayout( adjustableColumn=True )
     CircleControl = cmds.button( label='Create Circle Control', command= 'CreateCircle()')
     CubeControl = cmds.button( label='Create Cube Control', command = 'CreateCube()')
-    GearControl = cmds.button( label='Create Gear Control')
+    GearControl = cmds.button( label='Create Gear Control', command = 'CreateGear()')
     JointCreate = cmds.button( label='Create Joint Sequence', command = 'CreateJoints()')
+    CreateOffset = cmds.checkBox(label='Create Offset Group', v = True)
+    #Offset is W.I.P
     Close = cmds.button( label='Close', command=('cmds.deleteUI(\"' + 'CC Window' + '\", window=True)') )
     cmds.setParent( '..' )
         
