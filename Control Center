@@ -13,6 +13,7 @@ def createoffset():
 def gimbalfix():
     if cmds.checkBox('gimbal', query=True, value=True):
         cmds.addAttr(ln='RotationOrder', k = True, attributeType= 'enum', en='xyz:yzx:zxy:xzy:yxz:zyx')
+        cmds.connectAttr('.RotationOrder', '.rotateOrder')
 
 #Runs checkbox statememts 
 def queries():
@@ -67,7 +68,7 @@ def window():
     JointCreate = cmds.button( label='Create Joint Sequence', command = 'CreateJoints()')
     CreateOffset = cmds.checkBox('createoffset', label='Create Offset Group', v = False)
     GimbalFix = cmds.checkBox ('gimbal', label = 'Rotation Order', v = False)
-    Close = cmds.button( label='Close', command=('cmds.deleteUI(\"' + 'CC Window' + '\", window=True)') )
+    SearchReplace = cmds.button(l = 'Search and Replace Names', command = "mm.eval('SearchReplaceNamesOptions')")
     cmds.setParent( '..' )
         
 window()
