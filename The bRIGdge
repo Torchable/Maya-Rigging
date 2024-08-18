@@ -1,7 +1,8 @@
-# Colin Cheng 
+# The bRIGdge 
+# by Colin Cheng 
 # 
-# 
-# The bRIGdge is a window I created that saves time creating custom controls for your rig. 
+#  The bRIGdge is a window I created that saves time creating custom controls for your rig.
+# To use, simply  
 
 import maya.cmds as cmds
 import maya.mel as mm
