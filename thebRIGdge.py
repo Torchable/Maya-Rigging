@@ -79,17 +79,19 @@ def window():
     #Creates window
     mywindow = cmds.window('The bRIGdge', iconName='bRIGdge window', widthHeight=(400, 500) )
     cmds.showWindow(mywindow)
-
     cmds.columnLayout( adjustableColumn=True )
+    
     CircleControl = cmds.button( label='Create Circle Control', command= 'CreateCircle()')
     CubeControl = cmds.button( label='Create Cube Control', command = 'CreateCube()')
     GearControl = cmds.button( label='Create Gear Control', command = 'CreateGear()')
     IcosagonControl = cmds.button( l='Create Icosagon Control', command = 'CreateIco()')
-    ArrowControl = cmds.button (l = 'Create Arrow Control', command = 'CreateArrow()')
-    JointCreate = cmds.button( label='Create Joint Sequence', command = 'CreateJoints()')
+    ArrowControl = cmds.button (l = 'Create Arrow Control', command = 'CreateArrow()')     
+    cmds.separator(h=10)              
     CreateOffset = cmds.checkBox('createoffset', label='Create Offset Group', v = False)
     GimbalFix = cmds.checkBox ('gimbal', label = 'Rotation Order', v = False)
-    FKIKSwitch = cmds.checkBox('fkikswitch', label = 'FK IK Switch', v = False) 
+    FKIKSwitch = cmds.checkBox('fkikswitch', label = 'FK IK Switch', v = False)
+    cmds.separator(h=10)
+    JointCreate = cmds.button( label='Create Joint Sequence', command = 'CreateJoints()') 
     cmds.setParent( '..' )
         
 window()
