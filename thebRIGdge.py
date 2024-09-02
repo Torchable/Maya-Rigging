@@ -1,11 +1,12 @@
-# The bRIGdge 
+6# The bRIGdge 
 # by Colin Cheng 
 # 
-#  The bRIGdge is a window I created that saves time creating custom controls for your rig.
-# To use, simply  
+#  The bRIGdge is a window I created that saves time creating commonly used custom controls for your rig.
+# To use, simply drag the .py file into your maya file and it will run.
 
 import maya.cmds as cmds
 import maya.mel as mm
+
 
 #offset group attribute 
 def createoffset():
@@ -68,7 +69,7 @@ def CreateJoints():
     for i in range(jseq):
         cmds.joint(p= (jnum, 0, 0))
         jnum = jnum + 1         
-    
+
 #makes a new window for controls  
 def window():
     #Deletes old window
@@ -76,22 +77,32 @@ def window():
     if cmds.window(mywindow, exists=True):
         cmds.deleteUI(mywindow, window = True)  
 
-    #Creates window
-    mywindow = cmds.window('The bRIGdge', iconName='bRIGdge window', widthHeight=(400, 500) )
-    cmds.showWindow(mywindow)
-    cmds.columnLayout( adjustableColumn=True )
-    
+    #Creates window layout
+    mywindow = cmds.window('The bRIGdge', iconName='bRIGdge window', widthHeight=(300, 500))
+    windowview = cmds.showWindow(mywindow)
+    clayout = cmds.columnLayout(adjustableColumn=True )
+    separate = cmds.separator(h=10, style = 'shelf')
+    cmds.text(l= 'Welcome to the bRIGdge', al ='center', font='fixedWidthFont', rs = False, w=100, h =25 )
+    #Command buttons 
+    cmds.separator(h=10, style= 'shelf')
+    cmds.separator(h=10)
+    JointCreate = cmds.button( label='Create Joint Sequence', command = 'CreateJoints()') 
+    cmds.separator(h=10) 
+       
     CircleControl = cmds.button( label='Create Circle Control', command= 'CreateCircle()')
+    cmds.separator(h=3, style = 'none')
     CubeControl = cmds.button( label='Create Cube Control', command = 'CreateCube()')
+    cmds.separator(h=3, style = 'none')
     GearControl = cmds.button( label='Create Gear Control', command = 'CreateGear()')
+    cmds.separator(h=3, style = 'none')
     IcosagonControl = cmds.button( l='Create Icosagon Control', command = 'CreateIco()')
-    ArrowControl = cmds.button (l = 'Create Arrow Control', command = 'CreateArrow()')     
-    cmds.separator(h=10)              
+    cmds.separator(h=3, style = 'none')
+    ArrowControl = cmds.button (l = 'Create Arrow Control', command = 'CreateArrow()')
+   
+    cmds.separator(h=10)          
     CreateOffset = cmds.checkBox('createoffset', label='Create Offset Group', v = False)
     GimbalFix = cmds.checkBox ('gimbal', label = 'Rotation Order', v = False)
     FKIKSwitch = cmds.checkBox('fkikswitch', label = 'FK IK Switch', v = False)
-    cmds.separator(h=10)
-    JointCreate = cmds.button( label='Create Joint Sequence', command = 'CreateJoints()') 
     cmds.setParent( '..' )
         
 window()
