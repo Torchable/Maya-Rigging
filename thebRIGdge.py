@@ -2,7 +2,7 @@
 # by Colin Cheng 
 # 
 #  The bRIGdge is a window I created that saves time creating commonly used custom controls for your rig.
-# To use, simply drag the .py file into your maya file and it will run.
+# To use, drag the .py file into your Maya file and it will run.
 
 import maya.cmds as cmds
 import maya.mel as mm
@@ -61,6 +61,10 @@ def CreateIco():
 def CreateArrow():
     createarrow = mm.eval('curve -d 1 -p 1 0 0 -p 1 0 -2 -p -1 0 -2 -p -1 0 0 -p -2 0 0 -p 0 0 2 -p 2 0 0 -p 1 0 0 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 ;')
     queries()
+#Creates Square Control
+def CreateSquare():
+    createsquare = mm.eval('curve -d 1 -p 5 0 -5 -p -5 0 -5 -p -5 0 5 -p 5 0 5 -p 5 0 -5 -k 0 -k 1 -k 2 -k 3 -k 4 ;')
+    queries()
     
 #Creates joints by input #
 def CreateJoints():
@@ -98,7 +102,9 @@ def window():
     IcosagonControl = cmds.button( l='Create Icosagon Control', command = 'CreateIco()')
     cmds.separator(h=3, style = 'none')
     ArrowControl = cmds.button (l = 'Create Arrow Control', command = 'CreateArrow()')
-   
+    cmds.separator(h=3, style = 'none')
+    SquareControl = cmds.button (l = 'Create Square Control', command = 'CreateSquare()')
+    
     cmds.separator(h=10)          
     CreateOffset = cmds.checkBox('createoffset', label='Create Offset Group', v = False)
     GimbalFix = cmds.checkBox ('gimbal', label = 'Rotation Order', v = False)
