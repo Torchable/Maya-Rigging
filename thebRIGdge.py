@@ -1,8 +1,8 @@
-6# The bRIGdge 
+# The bRIGdge 
 # by Colin Cheng 
 # 
 #  The bRIGdge is a window I created that saves time creating commonly used custom controls for your rig.
-# To use, drag the .py file into your Maya file and it will run.
+# To use, simply drag the .py file into your Maya file and it will run.
 
 import maya.cmds as cmds
 import maya.mel as mm
@@ -10,8 +10,13 @@ import maya.mel as mm
 
 #offset group attribute 
 def createoffset():
+    offsetgroupnum = cmds.intField('offsetgroupnum', query=True, v = True)
     if cmds.checkBox('createoffset', query=True, v=True):
-        cmds.group()
+        if offsetgroupnum > 0:
+            for i in range(0, offsetgroupnum):
+                cmds.group() 
+        else:
+            cmds.group()
 
 #gimbal lock fix attribute
 def gimbalfix():
@@ -73,7 +78,7 @@ def CreateJoints():
     for i in range(jseq):
         cmds.joint(p= (jnum, 0, 0))
         jnum = jnum + 1         
-
+     
 #makes a new window for controls  
 def window():
     #Deletes old window
@@ -82,10 +87,10 @@ def window():
         cmds.deleteUI(mywindow, window = True)  
 
     #Creates window layout
-    mywindow = cmds.window('The bRIGdge', iconName='bRIGdge window', widthHeight=(300, 500))
+    mywindow = cmds.window('The bRIGdge', iconName='bRIGdge window', widthHeight=(300, 400))
     windowview = cmds.showWindow(mywindow)
-    clayout = cmds.columnLayout(adjustableColumn=True )
-    separate = cmds.separator(h=10, style = 'shelf')
+    clayout = cmds.columnLayout(adjustableColumn=True, columnAttach = ('both', 5), rowSpacing=3, columnWidth=200)
+    separatebutton = cmds.separator(h=3, style = 'none')
     cmds.text(l= 'Welcome to the bRIGdge', al ='center', font='fixedWidthFont', rs = False, w=100, h =25 )
     #Command buttons 
     cmds.separator(h=10, style= 'shelf')
@@ -94,21 +99,23 @@ def window():
     cmds.separator(h=10) 
        
     CircleControl = cmds.button( label='Create Circle Control', command= 'CreateCircle()')
-    cmds.separator(h=3, style = 'none')
+    cmds.separator(h=2, style = 'none')
     CubeControl = cmds.button( label='Create Cube Control', command = 'CreateCube()')
-    cmds.separator(h=3, style = 'none')
+    cmds.separator(h=2, style = 'none')
     GearControl = cmds.button( label='Create Gear Control', command = 'CreateGear()')
-    cmds.separator(h=3, style = 'none')
+    cmds.separator(h=2, style = 'none')
     IcosagonControl = cmds.button( l='Create Icosagon Control', command = 'CreateIco()')
-    cmds.separator(h=3, style = 'none')
+    cmds.separator(h=2, style = 'none')
     ArrowControl = cmds.button (l = 'Create Arrow Control', command = 'CreateArrow()')
-    cmds.separator(h=3, style = 'none')
+    cmds.separator(h=2, style = 'none')
     SquareControl = cmds.button (l = 'Create Square Control', command = 'CreateSquare()')
-    
     cmds.separator(h=10)          
     CreateOffset = cmds.checkBox('createoffset', label='Create Offset Group', v = False)
+    OffsetGroupName = cmds.text(l = 'Number of Groups', fn = 'smallBoldLabelFont', al = 'left')
+    OffsetGroupnum = cmds.intField('offsetgroupnum', m = True, w = 5, h = 20, min = 0)
     GimbalFix = cmds.checkBox ('gimbal', label = 'Rotation Order', v = False)
     FKIKSwitch = cmds.checkBox('fkikswitch', label = 'FK IK Switch', v = False)
+    cmds.separator(h=10)
     cmds.setParent( '..' )
         
 window()
