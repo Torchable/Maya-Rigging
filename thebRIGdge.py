@@ -1,8 +1,8 @@
-# The bRIGdge 
+ # The bRIGdge 
 # by Colin Cheng 
 # 
 #  The bRIGdge is a window I created that saves time creating commonly used custom controls for your rig.
-# To use, simply drag the .py file into your Maya file and it will run.
+# To use, simply drag the .py file into your maya file and it will run.
 
 import maya.cmds as cmds
 import maya.mel as mm
@@ -70,6 +70,10 @@ def CreateArrow():
 def CreateSquare():
     createsquare = mm.eval('curve -d 1 -p 5 0 -5 -p -5 0 -5 -p -5 0 5 -p 5 0 5 -p 5 0 -5 -k 0 -k 1 -k 2 -k 3 -k 4 ;')
     queries()
+#Creates Cone Control 
+def CreateCone():
+    createcone = mm.eval('curve -d 1 -p 0.0270729 0.174247 0.083322 -p 0 -0.000972612 0 -p 0.0708779 0.174247 0.0514958 -p 0.0270729 0.174247 0.083322 -p -0.027073 0.174247 0.083322 -p 0 -0.000972612 0 -p -0.027073 0.174247 0.083322 -p -0.0708779 0.174247 0.0514958 -p 0 -0.000972612 0 -p -0.0708779 0.174247 0.0514958 -p -0.0876099 0.174247 0 -p 0 -0.000972612 0 -p -0.0876099 0.174247 0 -p -0.0708779 0.174247 -0.0514958 -p 0 -0.000972612 0 -p -0.0708779 0.174247 -0.0514958 -p -0.0270729 0.174247 -0.083322 -p 0 -0.000972612 0 -p -0.0270729 0.174247 -0.083322 -p 0.027073 0.174247 -0.083322 -p 0 -0.000972612 0 -p 0.027073 0.174247 -0.083322 -p 0.0708779 0.174247 -0.0514958 -p 0 -0.000972612 0 -p 0.0708779 0.174247 -0.0514958 -p 0.0876099 0.174247 5.22196e-09 -p 0 -0.000972612 0 -p 0.0876099 0.174247 5.22196e-09 -p 0.0708779 0.174247 0.0514958 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 -k 17 -k 18 -k 19 -k 20 -k 21 -k 22 -k 23 -k 24 -k 25 -k 26 -k 27 -k 28 ;')
+    queries()
     
 #Creates joints by input #
 def CreateJoints():
@@ -80,7 +84,7 @@ def CreateJoints():
         jnum = jnum + 1         
      
 #makes a new window for controls  
-def window():
+def brIGdgewindow():
     #Deletes old window
     mywindow = 'Custom Control Window'
     if cmds.window(mywindow, exists=True):
@@ -109,6 +113,8 @@ def window():
     ArrowControl = cmds.button (l = 'Create Arrow Control', command = 'CreateArrow()')
     cmds.separator(h=2, style = 'none')
     SquareControl = cmds.button (l = 'Create Square Control', command = 'CreateSquare()')
+    cmds.separator(h=2, style= 'none')
+    ConeControl = cmds.button (l = 'Create Cone Control', command = 'CreateCone()')
     cmds.separator(h=10)          
     CreateOffset = cmds.checkBox('createoffset', label='Create Offset Group', v = False)
     OffsetGroupName = cmds.text(l = 'Number of Groups', fn = 'smallBoldLabelFont', al = 'left')
@@ -118,4 +124,4 @@ def window():
     cmds.separator(h=10)
     cmds.setParent( '..' )
         
-window()
+brIGdgewindow()
