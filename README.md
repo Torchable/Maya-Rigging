@@ -1,1 +1,1 @@
-I am a 3D rigger mainly learning Python for Autodesk Maya. I post tools and scripts that I've made for an efficient workflow! As I learn more about scripting and coding, I aim to learn C++ and apply my knowledge to Houdini in the future. 
+I am a 3D rigger mainly learning Python for Autodesk Maya. I post tools and helper scripts that I've made for an efficient workflow! As I learn more about scripting and coding, I aim to learn C++ and apply my knowledge to Houdini in the future. 
