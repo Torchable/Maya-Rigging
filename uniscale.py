@@ -8,7 +8,7 @@ import maya.cmds as cmds
 #Learning how to do classes at the moment and implementing it into the window, need to look further into the meaning of (object) 
 class UnitsToUnits(object):
     # Window construction
-    def conversion(conv):
+    def __init__(conv):
         conv.window = 'convertWindow'
         conv.title = 'Unit Scale Window'   
         conv.size = (400, 350) 
