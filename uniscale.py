@@ -1,7 +1,7 @@
 #Universal Scale will allow you to scale your object regardless the unit. 
 #(Ex. if you want an object to be 6 ft but you're in cm on Maya, this tool will automatically scale your object to the 6 ft equivalent in cm (182.88 cm) ||
 
-#Currently a WIP and is meant to be a continuation of Automating Rigging Pt. 2 
+#Currently a WIP and is meant to be a continuation of Simple Rigging Automation Pt. 2
 
 import maya.cmds as cmds 
 
