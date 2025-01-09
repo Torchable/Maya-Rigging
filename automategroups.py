@@ -9,7 +9,7 @@
 
 import maya.cmds as cmds
 
-def main(groups):
+def riggroups(groups):
 #User input for prefix name
     x = cmds.promptDialog(title= 'RIG Group Setup', message='Insert Prefix Name')
     if x == 'Confirm':
@@ -36,4 +36,4 @@ def groups(x):
 #Creation of rig group
     RIG = cmds.group(CTRL, GEO, JNT, notouch, DEF, IK, n= x + '_RIG')
 
-main(groups)
+riggroups(groups)
