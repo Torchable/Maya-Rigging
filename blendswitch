@@ -4,7 +4,7 @@ def blendswitch():
       selected = cmds.ls(selection=True)
       for attr in ['translate', 'rotate', 'scale']:
           bcn = cmds.createNode('blendColors',
-                                name=bind.replace('bind', attr + '_BCN'))
+                                name=bind.replace('bind_', attr + '_BCN'))
           cmds.connectAttr('*_IK' + '.' + attr, bcn + '.color1')
           cmds.connectAttr('*_FK' + '.' + attr, bcn + '.color2')
           cmds.connectAttr('*_settings_CTRL.fkIk', bcn + '.blender')
