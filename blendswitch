@@ -2,12 +2,13 @@ import maya.cmds as cmds
 
 def blendswitch():
       selected = cmds.ls(selection=True)
+      bind = selected[2]
       for attr in ['translate', 'rotate', 'scale']:
           bcn = cmds.createNode('blendColors',
-                                name=bind.replace('bind_', attr + '_BCN'))
-          cmds.connectAttr('*_IK' + '.' + attr, bcn + '.color1')
-          cmds.connectAttr('*_FK' + '.' + attr, bcn + '.color2')
+                                name=(bind + '_' + attr + '_BCN'))
+          cmds.connectAttr(selected[0] + '.' + attr, bcn + '.color1')
+          cmds.connectAttr(selected[1] + '.' + attr, bcn + '.color2')
           cmds.connectAttr('*_settings_CTRL.fkIk', bcn + '.blender')
-          cmds.connectAttr(bcn + '.output', bind + '.' + attr)
+          cmds.connectAttr(bcn + '.output', selected[2] + '.' + attr)
 
 blendswitch()
