@@ -128,7 +128,7 @@ def compare_models(*args):
         ref_count = vertex_count(ref_meshes[name])
         imp_count = vertex_count(imp_meshes[name])
         if ref_count != imp_count:
-            mismatched.append('    {}  (Referenced: {}  |  Imported: {})'.format(name, ref_count, imp_count))
+            mismatched.append((name, ref_count, imp_count))
 
     lines = []
     if not ref_meshes or not imp_meshes:
@@ -136,11 +136,18 @@ def compare_models(*args):
     elif not mismatched and not only_in_ref and not only_in_imp:
         lines.append('Model is up to date')
     else:
-        lines.append('Model is NOT up to date')
         if mismatched:
+            lines.append('Model is NOT up to date. Wrong vertex count on: {}'.format(
+                ', '.join(name for name, _, _ in mismatched)))
             lines.append('')
-            lines.append('Vertex count does not match ({}):'.format(len(mismatched)))
-            lines.extend(mismatched)
+            lines.append('GEO with the wrong vertex count ({}):'.format(len(mismatched)))
+            for name, ref_count, imp_count in mismatched:
+                lines.append('    {} has the wrong vertex count  (Referenced: {}  |  Imported: {})'.format(
+                    name, ref_count, imp_count))
+                cmds.warning('{} has the wrong vertex count (Referenced: {} | Imported: {})'.format(
+                    name, ref_count, imp_count))
+        else:
+            lines.append('Model is NOT up to date. All matching GEO have the same vertex count, but some GEO are missing.')
         if only_in_ref:
             lines.append('')
             lines.append('Only in the referenced model ({}):'.format(len(only_in_ref)))
